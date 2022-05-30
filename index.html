@@ -29,6 +29,8 @@
           <li><a id="page-about" href="#">About</a></li>
           <li><a id="page-riders" href="#">Riders</a></li>
           <li><a id="page-edit-rider" href="#">Edit Rider</a></li>
+          <li><a id="page-add-rider" href="#">Add new Rider</a></li>
+          
         </ul>
       </div>
       <div id="content" style="margin-left: 15px; padding-top: 1em"></div>
@@ -116,3 +118,53 @@
 
 </template>
 
+<Template data-id="page-add-rider">
+
+<div class="d-flex justify-content-center">
+  <form class="form">
+      <div class="form-group">
+        <label>Name</label>
+        <div >
+          <input type="text" id="rider-name" class="form-control">
+        </div>
+    </div> 
+    <div class="form-group">
+      <label>Age</label>
+      <div >
+        <input type="text" id="rider-age" class="form-control">
+      </div>
+    </div>
+   <div class="form-group">
+     <label>Country</label>
+     <div>
+      <input type="text" id="rider-country" class="form-control">
+     </div>
+    </div>
+    <div class="form-group">
+      <label>Time</label>
+      <div> 
+        <input type="text" id="rider-time" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Mountain Points</label>
+      <div>
+        <input type="text" class="form-control" id="rider-mtn-points">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Sprint Points</label>
+      <div>
+        <input type="text" id="rider-sprint-points" class="form-control">
+      </div>
+    </div>
+    <div class="form-group">
+      <select id="team-selector">
+    </div>
+    </select> 
+    <div>
+      <button type="submit" id="create-rider-btn" class="btn btn-primary">Submit Rider</button>
+    </div>
+  </form>
+</div>  
+</Template>
