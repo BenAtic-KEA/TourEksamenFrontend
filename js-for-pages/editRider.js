@@ -7,8 +7,8 @@ let currentRider = {}
 
 export function editRiderHandler(){
     document.getElementById("rider-selector").onchange = riderInfo
-    //document.getElementById("edit-rider-btn").onclick = editRider
-    //document.getElementById("delete-rider-btn").onclick = deleteRider
+    document.getElementById("edit-rider-btn").onclick = editRider
+    document.getElementById("delete-rider-btn").onclick = deleteRider
 }
 
 export function riderSelector(){
@@ -30,22 +30,22 @@ function editRiderForm(rider){
         <input id="input-id" class="form-control" value="${encode(rider.id)} "readonly>`
 
     const ageRow = `
-    <input id="input-age" class="form-control" placeholder="${encode(rider.age)} ">
+    <input id="input-age" class="form-control" value="${encode(rider.age)}" placeholder="${encode(rider.age)} ">
     `
     const countryRow = `
-    <input id="input-country" class="form-control" placeholder="${encode(rider.country)} ">
+    <input id="input-country" class="form-control" value="${encode(rider.country)}" placeholder="${encode(rider.country)} ">
     `
     const nameRow = `
-    <input id="input-name" class="form-control" placeholder="${encode(rider.name)}" >`
+    <input id="input-name" class="form-control" value="${encode(rider.name)}" placeholder="${encode(rider.name)}" >`
     
     const timeRow = `
-    <input id="input-name" class="form-control" placeholder="${encode(rider.time)}" >`
+    <input id="input-time" class="form-control" value="${encode(rider.time)}" placeholder="${encode(rider.time)}" >`
 
      const mtnPointsRow = `
-    <input id="input-name" class="form-control" placeholder="${encode(rider.mountainPoints)}" >`
+    <input id="input-mtn-points" class="form-control" value="${encode(rider.mountainPoints)}" placeholder="${encode(rider.mountainPoints)}" >`
 
      const sprintPointsRow = `
-    <input id="input-name" class="form-control" placeholder="${encode(rider.sprintPoints)}" >`
+    <input id="input-sprint-points" class="form-control" value="${encode(rider.sprintPoints)}" placeholder="${encode(rider.sprintPoints)}" >`
 
      
     document.getElementById("rider-id").innerHTML = idRow
@@ -63,8 +63,6 @@ function riderInfo(evt){
     fetch(URL + "/" + value)
     .then(res => res.json())
     .then(rider => {
-        
-        console.log(rider)
         currentRider.id = rider.id
         currentRider.name = rider.name
         currentRider.age = rider.age
@@ -72,18 +70,24 @@ function riderInfo(evt){
         currentRider.time = rider.time
         currentRider.mountainPoints = rider.mountainPoints
         currentRider.sprintPoints = rider.sprintPoints
-        currentRider.teamId = rider.team[0]
-        currentRider.teamName = rider.team[1]
-        
+        const team = {}
+        team.id = rider.team.id
+        team.name = rider.team.name
+        currentRider.team = team
        editRiderForm(rider)
     })
 }
 
 function editRider(){
     currentRider.name = document.getElementById("input-name").value
-    const options = makeOptions("PUT",currentCandidate)
-    console.log(currentCandidate)
-    fetch(URL + "/" + currentCandidate.id,options)
+    currentRider.age = document.getElementById("input-age").value
+    currentRider.country = document.getElementById("input-country").value
+    currentRider.time = document.getElementById("input-time").value
+    currentRider.mountainPoints = document.getElementById("input-mtn-points").value
+    currentRider.sprintPoints = document.getElementById("input-sprint-points").value
+    const options = makeOptions("PUT",currentRider)
+    console.log(currentRider)
+    fetch(URL + "/" + currentRider.id,options)
     .then(res => res.json())
     location.reload()
 

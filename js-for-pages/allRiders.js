@@ -9,6 +9,7 @@ let currentSortDir = "desc"
 
 export function setupRiderHandlers(){
     document.getElementById("time-header").onclick = () => sortByTime(0)
+    document.getElementById("team-selector").onchange = teamList
 
 }
 
@@ -56,4 +57,31 @@ function riderList(data){
     for(let i = 0; i < data.length; i++){
         riders.push(data[i])
     }
+}
+
+function teamList(){
+    console.log("hello")
+    let teamId = document.getElementById("team-selector").value
+    /*for(let i = 0; i <riders.length; i++){
+        if(riders[i].team.id === teamId)
+    }
+    */
+    const teamlist = riders.filter(rider => rider.team.id == teamId)
+    
+    console.log(teamId)
+    console.log(teamlist)
+    createTableBody(teamlist)
+}
+
+export function teamSelector(){
+    const options = makeOptions("GET",false)
+    const teamURL = SERVER_URL + "teams"
+    fetch(teamURL ,options)
+    .then(res => res.json())
+    .then(data => {
+        const row = data.map(team => `
+        <option value="${team.id}"> ${encode(team.name)}
+        `).join("")
+        document.getElementById("team-selector").innerHTML = row
+    })
 }

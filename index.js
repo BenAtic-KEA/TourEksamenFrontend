@@ -1,5 +1,5 @@
 import { renderTemplate, setActive, showPage } from './utils.js'
-import {setupRiderHandlers, allRiders} from "./js-for-pages/allRiders.js"
+import {setupRiderHandlers, allRiders, teamSelector} from "./js-for-pages/allRiders.js"
 import {editRiderHandler, riderSelector} from "./js-for-pages/editRider.js"
 
 function renderMenuItems(evt) {
@@ -11,6 +11,7 @@ function renderMenuItems(evt) {
     //Here you can execute JavaScript for the selected page
     case 'page-riders': {
       allRiders()
+      teamSelector()
       setupRiderHandlers()
       break
     }
