@@ -23,19 +23,13 @@
   </head>
 
   <body style="font-family: sans-serif; padding-top: 1em">
-    <div style="margin-left: 50px; margin-right: auto; width: 80%" class="vertical-menu">
+    <div style="margin-left: 50px; margin-right: auto; width: 80%">
       <div>
         <ul id="menu" class="menu">
           <li><a id="page-about" href="#">About</a></li>
-
-          <div id="logged-in" style="display: none">
-            <li><a id="page-secret" href="#">Protected Data</a></li>
-          </div>
-
-          <li><a id="page-login" href="#">Login</a></li>
-          <li><a id="page-logout" href="#" style="display: none">Logout</a></li>
+          <li><a id="page-riders" href="#">Riders</a></li>
+          <li><a id="page-edit-rider" href="#">Edit Rider</a></li>
         </ul>
-        <p id="user-role"></p>
       </div>
       <div id="content" style="margin-left: 15px; padding-top: 1em"></div>
     </div>
@@ -47,28 +41,41 @@
 -->
 
 <template data-id="page-about">
-  <h2>Simple Demo Project to demonstrate JWT-security</h2>
-</template>
-
-<template data-id="page-secret">
-  <div id="msg-from-server"></div>
-  <div id="error" style="color: red"></div>
-</template>
-
-<template data-id="page-logout">
-  <div></div>
-</template>
-
-<template data-id="page-login">
-  <div style="margin: 150px">
-    <h2>Login</h2>
-    <form>
-      <input placeholder="User Name" id="username" />
-      <input placeholder="Password" id="password" />
-      <div style="margin-top: 1em">
-        <button id="btn-login" class="btn btn-primary">Login</button>
-      </div>
-    </form>
-    <p id="error" style="color: red; margin-top: 10px"></p>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <h2>Tour de france - Eksamens Projekt</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <h5>Af Mark Kaplan Hansen</h5>
+    </div>
   </div>
 </template>
+
+<template data-id="page-riders" href="#">
+  <div class="row">
+    <table class="table table-striped" id="rider-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Team</th>
+          <th scope="col">Name</th>
+          <th scope="col">Age</th>
+          <th scope="col">Country</th>
+          <th scope="col">Mountain Points</th>
+          <th scope="col">Sprint Points</th>
+          <th scope="col" id="time-header">Total time</th>
+        </tr>
+      </thead>
+      <tbody id="table-body-riders">
+      </tbody>
+    </table>
+
+  </div>
+</template>
+
+<template data-id="page-edit-rider">
+
+</template>
+

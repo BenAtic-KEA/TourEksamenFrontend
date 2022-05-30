@@ -1,2 +1,3 @@
-# CinemaXX_FRONTEND
-Final project for 3. semester at KEA
+# Tour de france
+Eksamens Project
+
