@@ -1,5 +1,6 @@
 import { renderTemplate, setActive, showPage } from './utils.js'
 import {setupRiderHandlers, allRiders} from "./js-for-pages/allRiders.js"
+import {editRiderHandler, riderSelector} from "./js-for-pages/editRider.js"
 
 function renderMenuItems(evt) {
   const element = evt.target
@@ -14,7 +15,7 @@ function renderMenuItems(evt) {
       break
     }
     case 'page-edit-rider' :{
-      Riders()
+      riderSelector()
       editRiderHandler()
     }
   }

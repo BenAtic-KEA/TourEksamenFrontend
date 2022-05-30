@@ -54,7 +54,6 @@
 </template>
 
 <template data-id="page-riders" href="#">
-  <div class="row">
     <table class="table table-striped" id="rider-table">
       <thead>
         <tr>
@@ -71,11 +70,45 @@
       <tbody id="table-body-riders">
       </tbody>
     </table>
-
-  </div>
 </template>
 
 <template data-id="page-edit-rider">
+
+  <form>
+    <div>
+      <select id="rider-selector">
+      </select>
+    </div>
+    <div class="form-group">
+      <label>ID</label>
+      <div id="rider-id"></div>
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <div id="rider-name"></div>
+    </div> 
+    <div class="form-group">
+      <label>Age</label>
+      <div id="rider-age"></div>
+    </div>
+     <div class="form-group">
+      <label>Country</label>
+      <div id="rider-country"></div>
+    </div>
+     <div class="form-group">
+      <label>Time</label>
+      <div id="rider-time"></div>
+    </div>
+     <div class="form-group">
+      <label>Mountain Points</label>
+      <div id="rider-mtn-points"></div>
+    </div>
+     <div class="form-group">
+      <label>Sprint Points</label>
+      <div id="rider-sprint-points"></div>
+    </div>
+  
+  </form>
 
 </template>
 
