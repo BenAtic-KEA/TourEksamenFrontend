@@ -27,8 +27,8 @@ export function riderSelector(){
 
 function editRiderForm(rider){
     const idRow = `
-        <input id="input-id" class="form-control" value="${encode(rider.id)} "readonly>`
-
+    <input id="input-id" class="form-control" value="${encode(rider.id)} "readonly>`
+    
     const ageRow = `
     <input id="input-age" class="form-control" value="${encode(rider.age)}" placeholder="${encode(rider.age)} ">
     `
@@ -40,14 +40,14 @@ function editRiderForm(rider){
     
     const timeRow = `
     <input id="input-time" class="form-control" value="${encode(rider.time)}" placeholder="${encode(rider.time)}" >`
-
-     const mtnPointsRow = `
+    
+    const mtnPointsRow = `
     <input id="input-mtn-points" class="form-control" value="${encode(rider.mountainPoints)}" placeholder="${encode(rider.mountainPoints)}" >`
-
-     const sprintPointsRow = `
+    
+    const sprintPointsRow = `
     <input id="input-sprint-points" class="form-control" value="${encode(rider.sprintPoints)}" placeholder="${encode(rider.sprintPoints)}" >`
-
-     
+    
+    
     document.getElementById("rider-id").innerHTML = idRow
     document.getElementById("rider-name").innerHTML = nameRow
     document.getElementById("rider-age").innerHTML = ageRow
@@ -74,11 +74,12 @@ function riderInfo(evt){
         team.id = rider.team.id
         team.name = rider.team.name
         currentRider.team = team
-       editRiderForm(rider)
+        editRiderForm(rider)
     })
 }
 
-function editRider(){
+async function editRider(){
+    document.getElementById("error-msg").innerText = ""
     currentRider.name = document.getElementById("input-name").value
     currentRider.age = document.getElementById("input-age").value
     currentRider.country = document.getElementById("input-country").value
@@ -86,16 +87,23 @@ function editRider(){
     currentRider.mountainPoints = document.getElementById("input-mtn-points").value
     currentRider.sprintPoints = document.getElementById("input-sprint-points").value
     const options = makeOptions("PUT",currentRider)
-    console.log(currentRider)
-    fetch(URL + "/" + currentRider.id,options)
-    .then(res => res.json())
-    location.reload()
-
+    try{
+        await fetch(URL + "/" + currentRider.id,options)
+    .then(res =>{  
+        if(!res.ok){
+        throw new Error(res.status + "\n"+ "Wrong input") 
+     }
+     return res.json()
+    })  
+    } catch (e){
+        document.getElementById("error-msg").style.display = "block"
+            document.getElementById("error-msg").innerText = e
+    }    
 }
 
 function deleteRider(){
     const options = makeOptions("DELETE")
     fetch(URL + "/" + currentRider.id,options)
     .then(res => res.json())
-location.reload()
+    location.reload()
 }
